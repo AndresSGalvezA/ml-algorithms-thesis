@@ -83,7 +83,7 @@ El mejor modelo para la clasificación del estado de madurez de bananos fue el c
 | 4   | SVM           | 0.98      | 0.985  | 0.9825   |
 | 5   | XGBoost       | 0.985     | 0.985  | 0.985    |
 
-## Conclusion
+## Conclusión
 
 Luego de entrenar y validar cada uno de los cinco modelos de aprendizaje de máquina - decision tree, K neighbors, random forest, svm y xgboost - los resultados indican que el clasificador random forest tiene el mejor desempeño, medido por la curva ROC. Esto sugiere que este modelo es efectivo para clasificar bananos según su estado de madurez en función de las características del conjunto de datos.
 
