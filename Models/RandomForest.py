@@ -4,10 +4,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
-df_green = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
-df_light = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
-df_yellow = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/yellow_banana_data.csv')
-df_black = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/black_banana_data.csv')
+df_green = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/green_banana_data.csv')
+df_light = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/light_banana_data.csv')
+df_yellow = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/yellow_banana_data.csv')
+df_black = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/black_banana_data.csv')
 
 df_green['label'] = 'green'
 df_light['label'] = 'light'

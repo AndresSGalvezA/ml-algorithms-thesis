@@ -5,10 +5,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
-green_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
-light_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
-yellow_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/yellow_banana_data.csv')
-black_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/black_banana_data.csv')
+green_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/green_banana_data.csv')
+light_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/light_banana_data.csv')
+yellow_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/yellow_banana_data.csv')
+black_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/TrainingValidation/black_banana_data.csv')
 
 green_data['label'] = 'green'
 light_data['label'] = 'light'
