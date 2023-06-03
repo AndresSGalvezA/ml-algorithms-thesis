@@ -1,19 +1,19 @@
-import pandas as pd
+from pandas import read_csv, concat
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 from xgboost import XGBClassifier
 
-green_data = pd.read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
-light_data = pd.read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
-yellow_data = pd.read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/yellow_banana_data.csv')
-black_data = pd.read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/black_banana_data.csv')
+green_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
+light_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
+yellow_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/yellow_banana_data.csv')
+black_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/black_banana_data.csv')
 
 green_data['label'] = 'green'
 light_data['label'] = 'light'
 yellow_data['label'] = 'yellow'
 black_data['label'] = 'black'
 
-data = pd.concat([green_data, light_data, yellow_data, black_data], ignore_index=True)
+data = concat([green_data, light_data, yellow_data, black_data], ignore_index=True)
 
 X = data.iloc[:, :-1].values
 y = data['label'].values
@@ -23,11 +23,7 @@ label_encoder.fit(y)
 
 y_encoded = label_encoder.transform(y)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.2, random_state=0)
-
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+X_train, X_test, y_train, y_test = train_test_split(X, y_encoded, test_size=0.22, random_state=0)
 
 clf = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss', random_state=0)
 

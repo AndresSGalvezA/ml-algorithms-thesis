@@ -1,7 +1,8 @@
 from pandas import read_csv, concat
+from numpy import array
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 df_green = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
 df_light = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
@@ -18,26 +19,17 @@ data = concat([df_green, df_light, df_yellow, df_black])
 X = data.iloc[:, :-1].values
 y = data['label'].values
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.22, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-clf = RandomForestClassifier(random_state=0)
+best_params = {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
+clf = RandomForestClassifier(**best_params, random_state = 0)
+clf.fit(X_train, y_train)
 
-param_grid = {
-    'n_estimators': [10, 50, 100, 200],
-    'max_depth': [None, 10, 20, 30],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4],
-    'max_features': ['sqrt']
-}
+y_pred = clf.predict(X_test)
 
-grid_search = GridSearchCV(estimator=clf, param_grid=param_grid, cv=5, scoring='accuracy', n_jobs=-1)
+print("Classification Report:\n", classification_report(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Accuracy score:\n", accuracy_score(y_test, y_pred))
 
-grid_search.fit(X_train, y_train)
-
-print("Best parameters found:", grid_search.best_params_)
-print("Best accuracy score:", grid_search.best_score_)
-
-best_clf = grid_search.best_estimator_
-best_clf.fit(X_train, y_train)
-accuracy = best_clf.score(X_test, y_test)
-print("Accuracy on test set:", accuracy)
+sample = array([[185, 1264, 758, 893, 1122, 1063, 838, 473, 176]])
+print("Prediction:", clf.predict(sample))

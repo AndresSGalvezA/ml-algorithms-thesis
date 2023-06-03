@@ -1,7 +1,9 @@
 from pandas import read_csv, concat
-from sklearn.model_selection import train_test_split, GridSearchCV
+from numpy import array
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 green_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/green_banana_data.csv')
 light_data = read_csv('C:/Users/asgas/Desktop/Prototipo tesis/Data/Training and validation data/light_banana_data.csv')
@@ -13,32 +15,26 @@ light_data['label'] = 'light'
 yellow_data['label'] = 'yellow'
 black_data['label'] = 'black'
 
-data = concat([green_data, light_data, yellow_data, black_data], ignore_index=True)
+data = concat([green_data, light_data, yellow_data, black_data], ignore_index = True)
 
 X = data.iloc[:, :-1].values
 y = data['label'].values
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.22, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-param_grid = {
-    'n_neighbors': list(range(1, 31)),
-    'weights': ['uniform', 'distance'],
-    'metric': ['euclidean', 'manhattan', 'minkowski']
-}
+best_params = {'C': 100, 'gamma': 0.01, 'kernel': 'linear'}
+clf = SVC(**best_params, random_state = 0)
+clf.fit(X_train, y_train)
 
-clf = KNeighborsClassifier()
+y_pred = clf.predict(X_test)
 
-grid_search = GridSearchCV(clf, param_grid, cv=5, scoring='accuracy')
-grid_search.fit(X_train, y_train)
+print("Classification Report:\n", classification_report(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Accuracy score:\n", accuracy_score(y_test, y_pred))
 
-print("Best parameters found:", grid_search.best_params_)
-print("Best accuracy score:", grid_search.best_score_)
-
-best_clf = grid_search.best_estimator_
-best_clf.fit(X_train, y_train)
-accuracy = best_clf.score(X_test, y_test)
-print("Accuracy on test set:", accuracy)
+sample = scaler.transform(array([[185, 1264, 758, 893, 1122, 1063, 838, 473, 176]]))
+print("Prediction: ", clf.predict(sample))
