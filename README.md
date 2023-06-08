@@ -103,4 +103,4 @@ Este proyecto fue realizado como parte del trabajo de graduación para la licenc
 
 ## Licencia
 
-Este trabajo es licenciado bajo la licencia MIT. Para más información, ver el archivo LICENSE.
+Este trabajo se rige por la licencia Creative Commons Attribution-NonComercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0): . Para más información, ver el archivo LICENSE.md.
