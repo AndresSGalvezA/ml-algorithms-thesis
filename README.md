@@ -77,11 +77,11 @@ El mejor modelo para la clasificación del estado de madurez de bananos fue el c
 
 |     | Model         | Precision | Recall | F1-score |
 | --- | ------------- | --------- | ------ | -------- |
-| 1   | Decision tree | 0.82      | 0.82   | 0.815    |
-| 2   | K Neighbors   | 0.95      | 0.9575 | 0.955    |
-| 3   | Random forest | 0.9625    | 0.965  | 0.965    |
-| 4   | SVM           | 0.98      | 0.985  | 0.9825   |
-| 5   | XGBoost       | 0.985     | 0.985  | 0.985    |
+| 1   | Decision tree | 0.8200    | 0.8200 | 0.8150   |
+| 2   | K Neighbors   | 0.9500    | 0.9575 | 0.9550   |
+| 3   | Random forest | 0.9625    | 0.9650 | 0.9650   |
+| 4   | SVM           | 0.9800    | 0.9850 | 0.9825   |
+| 5   | XGBoost       | 0.9850    | 0.9850 | 0.9850   |
 
 ## Conclusión
 
